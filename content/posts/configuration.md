@@ -1,5 +1,5 @@
 +++
-title = "Configuring Apollo"
+title = "Configuring Hermes"
 date = "2024-07-09"
 
 [taxonomies]
@@ -203,7 +203,7 @@ Do you want to link to the source code of your blog post? You can turn on the `r
 ```toml
 [extra]
 repo_view = true
-repo_url = "https://github.com/not-matthias/apollo/tree/main/content" # Alternatively add the repo here
+repo_url = "https://github.com/janmasrovira/hermes/tree/main/content" # Alternatively add the repo here
 ```
 
 The `repo_url` can be set in the `[extra]` section or in your `config.toml`.
@@ -219,11 +219,11 @@ Enables or disables the comment system for posts.
 After making `comment = true` in `[extra]` section of you post, save your script from [Giscus](https://giscus.app) to `templates/_giscus_script.html`.
 When enabled, this allows readers to leave comments on your blog posts. This feature has to be set for each individual post and is not supported at higher levels.
 
-Example configuration in [content/posts/configuration.md](https://github.com/not-matthias/apollo/blob/main/content/posts/configuration.md):
+Example configuration in [content/posts/configuration.md](https://github.com/janmasrovira/hermes/blob/main/content/posts/configuration.md):
 
 ```toml
 +++
-title = "Configuring Apollo"
+title = "Configuring Hermes"
 
 [extra]
 comment = true
