@@ -25,8 +25,6 @@ favicon = "/icon/favicon.png"
 theme = "toggle"              # light, dark, auto, toggle
 fancy_code = true
 dynamic_note = true           # a note that can be toggled
-mathjax = true
-mathjax_dollar_inline_enable = true
 repo_url = "https://github.com/janmasrovira/hermes/tree/main/content/"
 
 menu = [
