@@ -170,17 +170,7 @@ Enable or disable analytics tracking:
 enabled = false
 ```
 
-After enabling analytics, configure GoatCounter or Umami.
-
-### GoatCounter
-
-Configure GoatCounter analytics:
-
-```toml
-[extra.analytics.goatcounter]
-user = "your_user"           # Your GoatCounter username
-host = "example.com"         # Optional: Custom host
-```
+After enabling analytics, configure Umami.
 
 ### Umami Analytics
 
