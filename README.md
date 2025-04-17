@@ -1,5 +1,5 @@
 # hermes
-Theme that I use formy personal blog. Originally forked from
+Theme that I use for my personal blog. Originally forked from
 [not-matthias/apollo](https://github.com/not-matthias/apollo).
 
 ## Installation
