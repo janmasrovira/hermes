@@ -75,16 +75,6 @@ When enabled, a table of contents will be generated for posts, making it easier 
 
 Note: This feature adds additional JavaScript to your site.
 
-## CDN Usage (`use_cdn`)
-
-Determines whether to use a Content Delivery Network (CDN) for assets.
-
-- Type: Boolean
-- Default: false
-- Usage: `use_cdn = false`
-
-When set to true, the theme will attempt to load assets from a CDN, which can improve loading times for visitors from different geographic locations.
-
 ## Favicon (`favicon`)
 
 Specifies the path to the favicon image for your blog.
