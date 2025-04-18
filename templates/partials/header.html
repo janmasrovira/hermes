@@ -85,7 +85,7 @@
     {% if config.extra.fancy_code %}<script src={{ get_url(path="js/codeblock.js") }}></script>{% endif %}
 
     {# Table of contents #}
-    {% if config.extra.toc | default(value=false) %}<script src={{ get_url(path="js/toc.js") }}></script>{% endif %}
+    <script src={{ get_url(path="js/toc.js") }}></script>
 
     {# Dynamic Note #}
     {% if config.extra.dynamic_note | default(value=false) %}
