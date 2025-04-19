@@ -58,6 +58,11 @@ a:hover {
   color: var(--hover-color);
 }
 
+a:hover code {
+  background-color: inherit;
+  color: inherit;
+}
+
 time {
   color: grey;
 }
