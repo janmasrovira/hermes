@@ -1,24 +1,21 @@
-name: Zola
+name: Build with Zola
+
+env:
+  ZOLA_VERSION: 0.20.0
 
 on:
+  pull_request:
   push:
     branches: [ main ]
   workflow_dispatch:
-
-# Allow one concurrent deployment
-concurrency:
-  group: "pages"
-  cancel-in-progress: true
-
 
 jobs:
   build:
     runs-on: ubuntu-latest
     
     steps:
-    - uses: actions/checkout@v3
-      
-    - name: Build and deploy
-      uses: shalzz/zola-deploy-action@master
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - uses: actions/checkout@v4
+
+    - uses: taiki-e/install-action@v2
+      with:
+        tool: zola@${{ env.ZOLA_VERSION }}
