@@ -84,9 +84,11 @@
 {% endmacro tags %}
 
 {% macro page_header(title) %}
+    {% if title %}
     <div class="page-header">
         {{ title }}<span class="primary-color" style="font-size: 1.6em">.</span>
     </div>
+    {% endif %}
 {% endmacro content %}
 
 {% macro home_page(section) %}
