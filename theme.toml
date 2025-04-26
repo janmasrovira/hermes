@@ -5,10 +5,6 @@ license = "MIT"
 homepage = "https://github.com/janmasrovira/hermes"
 demo = "TODO"
 
-# Any variable there can be overridden in the end user `config.toml`
-# You don't need to prefix variables by the theme name but as this will
-# be merged with user data, some kind of prefix or nesting is preferable
-# Use snake_casing to be consistent with the rest of Zola
 [extra]
 
 [author]
