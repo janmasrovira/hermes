@@ -79,20 +79,22 @@ document.addEventListener('DOMContentLoaded', function () {
         });
 
         const langClass = codeBlock.className.match(/language-(\w+)/);
-        const lang = langClass ? langClass[1] : 'default';
+        const lang = langClass ? langClass[1] : null;
 
-        // Create and append the label
-        const label = document.createElement('span');
-        label.className = 'code-label label-' + lang; // Use the specific language class
-        label.textContent = lang.toUpperCase(); // Display the language as label
-        pre.appendChild(label);
+        let label = null;
+        if (lang) {
+            label = document.createElement('span');
+            label.className = 'code-label label-' + lang;
+            label.textContent = lang.toUpperCase();
+            pre.appendChild(label);
+        }
 
         let ticking = false;
         pre.addEventListener('scroll', () => {
             if (!ticking) {
                 window.requestAnimationFrame(() => {
                     copyBtn.style.right = `-${pre.scrollLeft}px`;
-                    label.style.right = `-${pre.scrollLeft}px`;
+                    if (label) label.style.right = `-${pre.scrollLeft}px`;
                     ticking = false;
                 });
                 ticking = true;
