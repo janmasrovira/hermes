@@ -57,27 +57,6 @@ document.addEventListener('DOMContentLoaded', function () {
         const pre = codeBlock.parentNode;
         pre.style.position = 'relative'; // Ensure parent `pre` can contain absolute elements
 
-        // Create and append the copy button
-        const copyBtn = document.createElement('button');
-        copyBtn.className = 'clipboard-button';
-        copyBtn.innerHTML = copyIcon;
-        copyBtn.setAttribute('aria-label', 'Copy code to clipboard');
-        pre.appendChild(copyBtn);
-
-        // Attach event listener to copy button
-        copyBtn.addEventListener('click', async () => {
-            // Determine if the code is in a table or not
-            const isTable = codeBlock.querySelector('table');
-            const codeToCopy = isTable ? getCodeFromTable(codeBlock) : getNonTableCode(codeBlock);
-            try {
-                await navigator.clipboard.writeText(codeToCopy);
-                changeIcon(copyBtn, true); // Show success icon
-            } catch (error) {
-                console.error('Failed to copy text: ', error);
-                changeIcon(copyBtn, false); // Show error icon
-            }
-        });
-
         const langClass = codeBlock.className.match(/language-(\w+)/);
         const lang = langClass ? langClass[1] : null;
 
@@ -93,7 +72,6 @@ document.addEventListener('DOMContentLoaded', function () {
         pre.addEventListener('scroll', () => {
             if (!ticking) {
                 window.requestAnimationFrame(() => {
-                    copyBtn.style.right = `-${pre.scrollLeft}px`;
                     if (label) label.style.right = `-${pre.scrollLeft}px`;
                     ticking = false;
                 });
