@@ -1,19 +1,23 @@
-{% import "macros/macros.html" as post_macros %}
-
 <head>
+    {% set page_context = page | default(value={}) %}
+    {% set page_extra = page_context.extra | default(value={}) %}
+    {% set section_context = section | default(value={}) %}
+    {% set page_has_og_title = false %}
+    {% set page_has_og_description = false %}
+    {% set page_has_description = false %}
+
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="base" content="{{ config.base_url }}">
 
-    {% if page.extra.meta %}
+    {% if page_extra.meta %}
         <!-- the meta data config goes here  -->
-        {% for data in page.extra.meta %}
+        {% for data in page_extra.meta %}
             <meta {% for key, value in data %} {% if key == "property" and value == "og:title" %} {% set_global page_has_og_title = true -%} {% endif %}
                   {% if key == "property" and value == "og:description" %} {% set_global page_has_og_description = true -%} {% endif %}
                   {% if key == "name" and value == "description" %} {% set_global page_has_description = true -%} {% endif %}
-                  {{ key }}
-                  None="{{ value }}"
+                  {{ key }}="{{ value }}"
                   {% endfor %} />
         {% endfor %}
     {% endif %}
@@ -29,10 +33,10 @@
 
     {% else %}
         <title>
-            {% if page.title %}
-                {{ page.title }}
-            {% elif section.title %}
-                {{ section.title }}
+            {% if page_context.title %}
+                {{ page_context.title }}
+            {% elif section_context.title %}
+                {{ section_context.title }}
             {% elif config.title %}
                 {{ config.title }}
             {% else %}
@@ -42,21 +46,21 @@
 
         {% if not page_has_og_title %}
             <meta property="og:title"
-                  content="{% if page.title -%}{{ page.title }}{% elif config.title -%}{{ config.title }}{% else -%}Post{% endif -%}" />
+                  content="{% if page_context.title -%}{{ page_context.title }}{% elif section_context.title -%}{{ section_context.title }}{% elif config.title -%}{{ config.title }}{% else -%}Post{% endif -%}" />
         {% endif %}
     {% endif %}
 
     {% if not page_has_og_description %}
-        {% if page.description %}
-            <meta property="og:description" content="{{ page.description }}" />
+        {% if page_context.description %}
+            <meta property="og:description" content="{{ page_context.description }}" />
         {% elif config.description %}
             <meta property="og:description" content="{{ config.description }}" />
         {% endif %}
     {% endif %}
 
     {% if not page_has_description %}
-        {% if page.description %}
-            <meta name="description" content="{{ page.description }}" />
+        {% if page_context.description %}
+            <meta name="description" content="{{ page_context.description }}" />
         {% elif config.description %}
             <meta name="description" content="{{ config.description }}" />
         {% endif %}
