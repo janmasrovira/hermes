@@ -1,4 +1,4 @@
-{% macro list_tag_posts(pages, tag_name=false) %}
+{% component post_macros.list_tag_posts(pages, tag_name="") %}
     {% if tag_name %}
         <div class="page-header">
             Entries tagged :: {{ tag_name }}<span class="primary-color" style="font-size: 1.6em">.</span>
@@ -10,11 +10,11 @@
     {% endif %}
 
     <main class="list">
-        {{ post_macros::list_posts(pages=pages) }}
+        {{ <post_macros.list_posts pages={pages} /> }}
     </main>
-{% endmacro %}
+{% endcomponent post_macros.list_tag_posts %}
 
-{% macro list_posts(pages) %}
+{% component post_macros.list_posts(pages) %}
     <ul>
         {%- for page in pages %}
             <li class="list-item">
@@ -48,9 +48,9 @@
             </li>
         {% endfor -%}
     </ul>
-{% endmacro list_posts %}
+{% endcomponent post_macros.list_posts %}
 
-{% macro list_terms(terms) %}
+{% component post_macros.list_terms(terms) %}
     <ul>
         {%- for term in terms %}
             <section class="list-item">
@@ -61,9 +61,9 @@
 
         {% endfor -%}
     </ul>
-{% endmacro list_terms %}
+{% endcomponent post_macros.list_terms %}
 
-{% macro tags(page, short=false) %}
+{% component post_macros.tags(page, short=false) %}
     {%- if page.taxonomies and page.taxonomies.tags %}
         <span class="post-tags-inline">
             {%- if short %}
@@ -75,39 +75,39 @@
             {% endif -%}
             {%- for tag in page.taxonomies.tags %}
                 <a class="post-tag"
-                   href="{{ get_taxonomy_url(kind='tags', name=tag, lang=page.lang) | safe }}">#{{ tag }}</a>
+                   href="{{ get_taxonomy_url(kind='tags', term=tag, lang=page.lang) | safe }}">#{{ tag }}</a>
                 {%- if not loop.last %}{{ sep | safe }}
                 {% endif -%}
             {% endfor -%}
         </span>
     {% endif -%}
-{% endmacro tags %}
+{% endcomponent post_macros.tags %}
 
-{% macro page_header(title) %}
+{% component post_macros.page_header(title) %}
     {% if title %}
     <div class="page-header">
         {{ title }}<span class="primary-color" style="font-size: 1.6em">.</span>
     </div>
     {% endif %}
-{% endmacro content %}
+{% endcomponent post_macros.page_header %}
 
-{% macro home_page(section) %}
+{% component post_macros.home_page(section) %}
     <main>
         <article>
             <section class="body">
-                {{ post_macros::page_header(title=section.title) }}
+                {{ <post_macros.page_header title={section.title} /> }}
                 {{ section.content | safe }}
             </section>
         </article>
     </main>
-{% endmacro home_page %}
+{% endcomponent post_macros.home_page %}
 
-{% macro content(page) %}
+{% component post_macros.content(page, config) %}
     <main>
         <article>
             <div class="title">
                 {#<h1 class="title">{{ page.title }}</h1>#}
-                {{ post_macros::page_header(title=page.title) }}
+                {{ <post_macros.page_header title={page.title} /> }}
 
                 <div class="meta">
                     {% if page.date %}
@@ -123,7 +123,7 @@
                         <span class="tags-label">:: Tags:</span>
                         <span class="tags">
                             {%- for tag in page.taxonomies.tags %}
-                                <a href="{{ get_taxonomy_url(kind='tags', name=tag, lang=page.lang) }}"
+                                <a href="{{ get_taxonomy_url(kind='tags', term=tag, lang=page.lang) }}"
                                    class="post-tag">{{ tag }}</a>
                                 {% if not loop.last %},{% endif %}
                             {% endfor %}
@@ -199,9 +199,9 @@
             </section>
         </article>
     </main>
-{% endmacro content %}
+{% endcomponent post_macros.content %}
 
-{% macro cards_posts(pages) %}
+{% component post_macros.cards_posts(pages) %}
     <div class="cards">
         {%- for page in pages %}
             <div class="card">
@@ -241,4 +241,4 @@
 
         {% endfor -%}
     </div>
-{% endmacro cards_posts %}
+{% endcomponent post_macros.cards_posts %}
